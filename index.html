@@ -3,433 +3,442 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<meta name="theme-color" content="#f8c8de">
-<title>Taller de Sanidad para Chicas</title>
+<meta name="theme-color" content="#f9e8f2">
+<title>Taller de Sanidad</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Nunito:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
 
-  :root {
-    --pink-bg:     #fef0f6;
-    --pink-light:  #fce8f2;
-    --pink-mid:    #f5c0d8;
-    --pink-soft:   #f0aece;
-    --pink-accent: #d870a8;
-    --rose-text:   #b05880;
-    --rose-dark:   #8a3860;
-    --white-pink:  #fff8fb;
-    --panel-left:  linear-gradient(170deg, #f8c8de 0%, #eeaacc 60%, #e290be 100%);
-    --panel-right: linear-gradient(170deg, #fcd8eb 0%, #f5b8d8 60%, #eeaacc 100%);
-  }
+:root {
+  --bg:         #fdf4f8;
+  --pink-hero:  #f2b8d0;
+  --pink-mid:   #e898bc;
+  --pink-dark:  #c8709a;
+  --rose:       #a85278;
+  --rose-dark:  #7a3458;
+  --cream:      #fffaf8;
+  --text-soft:  #c090aa;
+  --green-arch: #7aaa6a;
+}
 
-  html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; }
 
-  body {
-    min-height: 100vh;
-    background:
-      radial-gradient(ellipse at 10% 10%, #fdd6ea 0%, transparent 50%),
-      radial-gradient(ellipse at 90% 90%, #f5c8e0 0%, transparent 50%),
-      var(--pink-bg);
-    font-family: 'Trebuchet MS', Arial, sans-serif;
-    color: #6a3050;
-    -webkit-font-smoothing: antialiased;
-  }
+body {
+  min-height: 100vh;
+  background:
+    radial-gradient(ellipse at 10% 10%, #fde0ee 0%, transparent 50%),
+    radial-gradient(ellipse at 90% 90%, #f8d0e8 0%, transparent 50%),
+    var(--bg);
+  font-family: 'Nunito', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
 
-  /* ════ PÉTALOS FLOTANTES ════ */
-  .petal {
-    position: fixed; pointer-events: none; z-index: 0;
-    font-size: 13px; opacity: 0;
-    animation: petalFall linear infinite;
-  }
-  @keyframes petalFall {
-    0%   { transform: translateY(-20px) rotate(0deg)   translateX(0px);   opacity: 0.5; }
-    50%  { transform: translateY(48vh)  rotate(160deg) translateX(10px);  opacity: 0.35;}
-    100% { transform: translateY(102vh) rotate(320deg) translateX(-8px);  opacity: 0;  }
-  }
+/* ══ VISTAS ══ */
+.view { display: none; flex-direction: column; align-items: center; min-height: 100vh; }
+.view.active { display:flex; }
 
-  /* ════ VISTAS ════ */
-  .view { display: none; flex-direction: column; align-items: center; min-height: 100vh; }
-  .view.active { display: flex; }
+/* ════════════════════════════════
+   VISTA 1 — INVITACIÓN
+════════════════════════════════ */
+#view-invite {
+  padding: 0 0 48px;
+  animation: fadeUp 0.8s ease both;
+}
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(20px); }
+  to   { opacity:1; transform:translateY(0); }
+}
 
-  /* ════════════════════════════
-     VISTA 1 — INVITACIÓN
-  ════════════════════════════ */
+/* ── Tarjeta principal ── */
+.invite-card {
+  width: 100%; max-width: 420px;
+  margin: 28px 20px;
+  background: var(--cream);
+  border-radius: 32px;
+  overflow: hidden;
+  box-shadow:
+    0 4px 20px rgba(180,90,130,0.1),
+    0 20px 50px rgba(180,90,130,0.12);
+  position: relative;
+}
+
+/* ── Cabecera título recto ── */
+.header-section {
+  position: relative;
+  width: 100%;
+  padding: 44px 24px 24px;
+  text-align: center;
+  overflow: hidden;
+}
+
+/* Florecitas SVG de fondo cayendo — cubre TODA la página */
+.petal {
+  position: fixed; pointer-events: none; z-index: 0;
+  font-size: 13px; opacity: 0;
+  animation: petalFall linear infinite;
+}
+@keyframes petalFall {
+  0%   { transform: translateY(-20px) rotate(0deg)   translateX(0px);   opacity: 0.5; }
+  50%  { transform: translateY(48vh)  rotate(160deg) translateX(10px);  opacity: 0.35;}
+  100% { transform: translateY(102vh) rotate(320deg) translateX(-8px);  opacity: 0;  }
+}
+  50%  { transform: translateY(48vh)  rotate(160deg) translateX(10px);  opacity: 0.35;}
+  100% { transform: translateY(102vh) rotate(320deg) translateX(-8px);  opacity: 0;  }
+}
+
+.header-eyebrow {
+  position: relative; z-index: 2;
+  font-size: 9px; letter-spacing: 6px; text-transform: uppercase;
+  color: var(--text-soft); font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 300; font-style: normal;
+  margin-bottom: 10px;
+}
+
+.header-title {
+  position: relative; z-index: 2;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 7px;
+  text-transform: uppercase;
+  color: var(--green-arch);
+  margin-bottom: 4px;
+}
+
+.header-line {
+  position: relative; z-index: 2;
+  width: 50px; height: 1px;
+  background: linear-gradient(to right, transparent, #d4c0e0, transparent);
+  margin: 10px auto 0;
+}
+
+/* ── Zona superior unificada (header + flor sin corte) ── */
+.top-zone {
+  width: 100%;
+  background: linear-gradient(180deg, #fde8f2 0%, #fff8fb 60%, #fffaf8 100%);
+  position: relative;
+  overflow: hidden;
+  padding-bottom: 8px;
+}
+
+/* ── Flor central ── */
+.flower-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 20px 8px;
+  position: relative;
+}
+
+.flower-svg {
+  width: 220px; height: auto;
+  filter: drop-shadow(0 8px 20px rgba(200,100,140,0.15));
+  animation: floatFlower 5s ease-in-out infinite;
+}
+@keyframes floatFlower {
+  0%,100% { transform: translateY(0) rotate(-1deg); }
+  50%      { transform: translateY(-8px) rotate(1deg); }
+}
+
+/* ── Separador pétalos ── */
+.petal-divider {
+  text-align: center;
+  font-size: 14px;
+  letter-spacing: 6px;
+  opacity: 0.45;
+  padding: 4px 0 12px;
+}
+
+/* ── Versículo ── */
+.verse-section {
+  padding: 0 32px 20px;
+  text-align: center;
+}
+.verse-text {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style: italic;
+  font-size: 15px;
+  color: var(--rose);
+  line-height: 1.85;
+}
+.verse-ref {
+  display: block;
+  margin-top: 8px;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text-soft);
+}
+
+/* ── Info ── */
+.info-section {
+  margin: 4px 20px 20px;
+  background: linear-gradient(135deg, #fde0ee, #f9d0e6);
+  border-radius: 20px;
+  padding: 20px 22px;
+  display: flex; flex-direction: column; gap: 13px;
+  border: 1px solid rgba(220,150,185,0.2);
+}
+.info-row { display:flex; align-items:center; gap:12px; }
+.info-icon {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: rgba(255,255,255,0.7);
+  display:flex; align-items:center; justify-content:center;
+  font-size: 16px; flex-shrink:0;
+  box-shadow: 0 2px 8px rgba(200,100,150,0.1);
+}
+.info-label {
+  font-size: 8px; letter-spacing:3px; text-transform:uppercase;
+  color: var(--pink-dark); display:block; margin-bottom:2px;
+}
+.info-val {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 15px; color: var(--rose-dark); line-height:1.4;
+}
+
+/* ── Llevar + Vestido ── */
+.bring-section {
+  margin: 0 20px 20px;
+  background: linear-gradient(155deg, #f8c8de, #f4b0d0);
+  border-radius: 20px;
+  padding: 20px 22px;
+  position: relative; overflow:hidden;
+}
+.bring-section::after {
+  content:''; position:absolute; bottom:-30px; right:-30px;
+  width:120px; height:120px; border-radius:50%;
+  background:rgba(255,255,255,0.15); pointer-events:none;
+}
+.bring-heading {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 11px; letter-spacing:4px; text-transform:uppercase;
+  color: rgba(100,30,60,0.6); margin-bottom:14px; text-align:center;
+}
+.bring-list { display:flex; flex-direction:column; gap:10px; margin-bottom:16px; }
+.bring-item { display:flex; align-items:flex-start; gap:9px; font-size:13.5px; color:rgba(90,25,55,0.85); line-height:1.55; }
+.bring-dot {
+  width:6px; height:6px; border-radius:50%;
+  background:rgba(255,255,255,0.75); flex-shrink:0; margin-top:5px;
+  box-shadow:0 1px 4px rgba(180,80,120,0.3);
+}
+.divider-soft { width:100%; height:1px; background:rgba(255,255,255,0.3); margin: 4px 0 14px; }
+.dress-row { display:flex; align-items:flex-start; gap:12px; }
+.dress-icon { font-size:30px; flex-shrink:0; }
+.dress-text {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style:italic; font-size:13.5px;
+  color:rgba(90,25,55,0.85); line-height:1.75;
+}
+.dress-text strong { font-style:normal; color:rgba(90,25,55,0.95); display:block; font-size:14px; }
+
+/* ── Botón ── */
+.btn-wrap { padding: 0 20px 28px; }
+.btn-register {
+  width:100%; background:linear-gradient(135deg,#e080b0,#c860a0);
+  color:#fff; border:none; cursor:pointer;
+  padding:17px; border-radius:16px;
+  font-family:'Nunito',sans-serif;
+  font-size:14px; font-weight:700; letter-spacing:2px; text-transform:uppercase;
+  box-shadow:0 8px 24px rgba(190,70,130,0.3);
+  transition:transform 0.15s, box-shadow 0.15s;
+  display:flex; align-items:center; justify-content:center; gap:10px;
+  -webkit-appearance:none;
+}
+.btn-register:active { transform:scale(0.97); }
+
+.footer-tag {
+  text-align:center; font-size:10px; letter-spacing:3px;
+  text-transform:uppercase; color:var(--text-soft);
+  padding: 0 0 4px;
+}
+
+/* ═════════════════════════
+   VISTA 2 — FORMULARIO
+═════════════════════════ */
+#view-form {
+  justify-content:center;
+  padding: 40px 20px;
+  animation: fadeUp 0.5s ease both;
+}
+
+.form-card {
+  background:var(--cream); border-radius:32px;
+  padding:36px 26px; width:100%; max-width:400px;
+  box-shadow:0 16px 50px rgba(180,100,140,0.14);
+  text-align:center; position:relative; overflow:hidden;
+}
+.form-card::before {
+  content:''; position:absolute; top:-50px; right:-50px;
+  width:160px; height:160px; border-radius:50%;
+  background:rgba(248,200,224,0.2); pointer-events:none;
+}
+
+.form-flowers { font-size:22px; letter-spacing:8px; opacity:0.45; margin-bottom:16px; }
+.form-title {
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-size:26px; font-weight:400; color:var(--rose);
+  margin-bottom:6px; line-height:1.3;
+}
+.form-title em { font-style:italic; color:var(--pink-dark); }
+.form-sub {
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-style:italic; font-size:13.5px; color:var(--text-soft);
+  margin-bottom:26px; line-height:1.6;
+}
+
+.field-group { display:flex; flex-direction:column; gap:15px; margin-bottom:22px; text-align:left; }
+.field { display:flex; flex-direction:column; gap:6px; }
+.field label {
+  font-size:9.5px; letter-spacing:3px; text-transform:uppercase;
+  color:var(--pink-dark); font-weight:600; padding-left:4px;
+}
+.field input {
+  border:1.5px solid #f0c0d8; border-radius:14px;
+  padding:14px 18px; font-size:16px;
+  font-family:'Nunito',sans-serif;
+  color:var(--rose-dark); background:#fff9fc; outline:none;
+  transition:border-color 0.2s, box-shadow 0.2s;
+  -webkit-appearance:none;
+}
+.field input:focus {
+  border-color:var(--pink-dark);
+  box-shadow:0 0 0 3px rgba(200,112,154,0.15);
+}
+.field input::placeholder { color:#dbb0c8; }
+.field input.invalid { border-color:#e05070; }
+.field-error { color:#e05070; font-size:11.5px; display:none; padding-left:4px; }
+
+.btn-submit {
+  width:100%; background:linear-gradient(135deg,#e080b0,#c860a0);
+  color:#fff; border:none; cursor:pointer;
+  padding:17px; border-radius:14px;
+  font-family:'Nunito',sans-serif;
+  font-size:14px; font-weight:700; letter-spacing:2px; text-transform:uppercase;
+  box-shadow:0 8px 24px rgba(190,70,130,0.28);
+  display:flex; align-items:center; justify-content:center; gap:10px;
+  transition:transform 0.15s; -webkit-appearance:none;
+}
+.btn-submit:active { transform:scale(0.97); }
+.btn-submit:disabled { opacity:0.75; cursor:not-allowed; }
+
+.spinner {
+  display:inline-block; width:15px; height:15px;
+  border:2px solid rgba(255,255,255,0.4);
+  border-top-color:#fff; border-radius:50%;
+  animation:spin 0.7s linear infinite; vertical-align:middle;
+}
+@keyframes spin { to { transform:rotate(360deg); } }
+
+.msg-error-global {
+  display:none; color:#e05070; font-size:13px;
+  margin-top:12px; text-align:center;
+}
+
+.btn-back {
+  background:none; border:none; cursor:pointer;
+  color:var(--text-soft); font-family:'Nunito',sans-serif;
+  font-size:13px; letter-spacing:1px;
+  margin-top:14px; padding:6px 0;
+  display:flex; align-items:center; justify-content:center; gap:4px;
+  width:100%; transition:color 0.2s;
+}
+.btn-back:active { color:var(--rose); }
+
+/* ═════════════════════════
+   VISTA 3 — CONFIRMACIÓN
+═════════════════════════ */
+#view-confirm {
+  justify-content:center;
+  padding:40px 20px;
+  animation:fadeUp 0.5s ease both;
+}
+
+.confirm-card {
+  background:var(--cream); border-radius:32px;
+  padding:48px 28px; width:100%; max-width:400px;
+  box-shadow:0 16px 50px rgba(180,100,140,0.14);
+  text-align:center; position:relative; overflow:hidden;
+}
+.confirm-card::before {
+  content:''; position:absolute; top:-50px; right:-50px;
+  width:180px; height:180px; border-radius:50%;
+  background:rgba(248,200,224,0.2); pointer-events:none;
+}
+.confirm-card::after {
+  content:''; position:absolute; bottom:-50px; left:-50px;
+  width:160px; height:160px; border-radius:50%;
+  background:rgba(240,180,210,0.15); pointer-events:none;
+}
+
+.confirm-big {
+  font-size:62px; display:block; margin-bottom:14px;
+  animation:heartbeat 2.6s ease-in-out infinite;
+}
+@keyframes heartbeat {
+  0%,100%{ transform:scale(1); }
+  40%    { transform:scale(1.13); }
+  60%    { transform:scale(1.08); }
+}
+.confirm-title {
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-size:28px; font-weight:400; color:var(--rose); margin-bottom:8px;
+}
+.confirm-name {
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-style:italic; font-size:22px; color:var(--pink-dark);
+  margin-bottom:18px; line-height:1.3;
+}
+.confirm-msg {
+  font-size:14px; color:#b0909e; line-height:1.9; margin-bottom:22px;
+}
+
+.confirm-details {
+  background:linear-gradient(135deg,#fde0ee,#f9d0e6);
+  border-radius:16px; padding:18px 20px; margin-bottom:22px;
+  display:flex; flex-direction:column; gap:10px;
+  border:1px solid rgba(230,160,195,0.2);
+}
+.confirm-row { display:flex; align-items:center; gap:12px; text-align:left; }
+.confirm-icon {
+  width:34px; height:34px; border-radius:50%;
+  background:rgba(255,255,255,0.65);
+  display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0;
+}
+.confirm-detail-text {
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-size:14px; color:var(--rose-dark); line-height:1.4;
+}
+
+.btn-ver-inv {
+  width:100%; background:none;
+  border:1.5px solid #f0c0d8; cursor:pointer;
+  padding:13px; border-radius:14px;
+  font-family:'Nunito',sans-serif;
+  color:var(--rose); font-size:12px; letter-spacing:2px; text-transform:uppercase;
+  transition:background 0.2s; -webkit-appearance:none;
+}
+.btn-ver-inv:active { background:#fde8f2; }
+
+@media print {
+  .petal-float, .btn-register, .btn-wrap, #view-form, #view-confirm {
+  justify-content:center;
+  padding:40px 20px;
+  animation:fadeUp 0.5s ease both;
+}
   #view-invite {
-    padding: 0 0 40px;
-    animation: fadeUp 0.7s ease both;
-  }
-  @keyframes fadeUp {
-    from { opacity:0; transform:translateY(18px); }
-    to   { opacity:1; transform:translateY(0); }
-  }
-
-  /* ── Cabecera hero ── */
-  .hero {
-    width: 100%;
-    background: var(--panel-left);
-    padding: 52px 28px 44px;
-    display: flex; flex-direction: column;
-    align-items: center; gap: 18px;
-    position: relative; overflow: hidden;
-    text-align: center;
-  }
-  .hero::before {
-    content:''; position:absolute; top:-60px; left:-60px;
-    width:220px; height:220px; border-radius:50%;
-    background:rgba(255,255,255,0.15); pointer-events:none;
-  }
-  .hero::after {
-    content:''; position:absolute; bottom:-70px; right:-50px;
-    width:240px; height:240px; border-radius:50%;
-    background:rgba(255,255,255,0.1); pointer-events:none;
-  }
-
-  .hero-flowers {
-    display: flex; gap: 10px; align-items: center;
-    position: relative; z-index: 1;
-    animation: floatY 4s ease-in-out infinite;
-  }
-  @keyframes floatY {
-    0%,100%{ transform:translateY(0); }
-    50%    { transform:translateY(-5px); }
-  }
-
-  .hero-tag {
-    font-size: 10px; letter-spacing: 5px; text-transform: uppercase;
-    color: rgba(255,255,255,0.75); font-weight: 400;
-    position: relative; z-index: 1;
-  }
-
-  .hero-title {
-    font-family: Georgia, 'Times New Roman', serif;
-    font-size: 40px; font-weight: 400; line-height: 1.18;
-    color: #fff;
-    text-shadow: 0 2px 16px rgba(160,60,100,0.25);
-    position: relative; z-index: 1;
-  }
-  .hero-title em {
-    font-style: italic;
-    color: rgba(255,255,255,0.88);
-  }
-
-  .hero-sub {
-    font-family: Georgia, serif; font-style: italic;
-    font-size: 15px; color: rgba(255,255,255,0.82);
-    position: relative; z-index: 1;
-  }
-
-  .hero-heart {
-    font-size: 44px; position: relative; z-index: 1;
-    animation: heartbeat 2.6s ease-in-out infinite;
-    filter: drop-shadow(0 3px 12px rgba(220,100,150,0.35));
-  }
-  @keyframes heartbeat {
-    0%,100%{ transform:scale(1); }
-    40%    { transform:scale(1.13); }
-    60%    { transform:scale(1.08); }
-  }
-
-  /* ── Cuerpo de la invitación ── */
-  .invite-body {
-    width: 100%; max-width: 480px;
-    padding: 0 20px;
-    display: flex; flex-direction: column; gap: 20px;
-    margin-top: -1px;
-  }
-
-  /* ── Versículo ── */
-  .verse-card {
-    background: var(--white-pink);
-    border-radius: 20px; padding: 24px 22px;
-    text-align: center;
-    box-shadow: 0 4px 18px rgba(180,100,140,0.1);
-    margin-top: 20px;
-  }
-  .verse-text {
-    font-family: Georgia, serif; font-style: italic;
-    font-size: 16px; color: var(--rose-text); line-height: 1.9;
-  }
-  .verse-ref {
-    display: block; margin-top: 10px; font-size: 10px;
-    letter-spacing: 3px; text-transform: uppercase; color: #c8a0b8;
-  }
-
-  /* ── Info box ── */
-  .info-card {
-    background: linear-gradient(135deg, #fde2ef, #f9d2e6);
-    border-radius: 20px; padding: 22px 20px;
-    display: flex; flex-direction: column; gap: 16px;
-    border: 1px solid rgba(230,160,195,0.2);
-    box-shadow: 0 4px 18px rgba(180,100,140,0.1);
-  }
-  .info-row { display: flex; align-items: center; gap: 14px; }
-  .info-icon-wrap {
-    width: 40px; height: 40px; border-radius: 50%;
-    background: rgba(255,255,255,0.65);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 18px; flex-shrink: 0;
-    box-shadow: 0 2px 8px rgba(200,100,150,0.12);
-  }
-  .info-label {
-    font-size: 9px; letter-spacing: 3px; text-transform: uppercase;
-    color: var(--pink-accent); display: block; margin-bottom: 3px;
-  }
-  .info-val {
-    font-family: Georgia, serif; font-size: 15px;
-    color: var(--rose-dark); line-height: 1.4;
-  }
-
-  /* ── Nota cierre ── */
-  .closing-card {
-    background: var(--white-pink);
-    border-radius: 20px; padding: 22px;
-    text-align: center;
-    box-shadow: 0 4px 18px rgba(180,100,140,0.1);
-  }
-  .closing-text {
-    font-family: Georgia, serif; font-style: italic;
-    font-size: 14px; color: #c0a0b4; line-height: 1.9;
-  }
-  .closing-text strong { font-style: normal; color: var(--rose-text); }
-
-  /* ── Llevar + Vestido ── */
-  .bring-card {
-    background: var(--panel-right);
-    border-radius: 20px; padding: 24px 22px;
-    box-shadow: 0 4px 18px rgba(180,100,140,0.12);
-    position: relative; overflow: hidden;
-  }
-  .bring-card::after {
-    content:''; position:absolute; bottom:-40px; right:-40px;
-    width:140px; height:140px; border-radius:50%;
-    background:rgba(255,255,255,0.12); pointer-events:none;
-  }
-  .bring-heading {
-    font-family: Georgia, serif; font-size: 12px;
-    letter-spacing: 4px; text-transform: uppercase;
-    color: rgba(100,30,65,0.65); margin-bottom: 16px; text-align: center;
-  }
-  .bring-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px; }
-  .bring-item { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: rgba(90,25,55,0.85); line-height: 1.55; }
-  .bring-dot {
-    width: 7px; height: 7px; border-radius: 50%;
-    background: rgba(255,255,255,0.7); flex-shrink: 0; margin-top: 5px;
-    box-shadow: 0 1px 4px rgba(180,80,120,0.3);
-  }
-
-  .divider-soft {
-    width: 100%; height: 1px;
-    background: rgba(255,255,255,0.35);
-    margin: 4px 0 18px;
-  }
-
-  .dress-row {
-    display: flex; align-items: flex-start; gap: 14px;
-  }
-  .dress-icon-big { font-size: 34px; flex-shrink: 0; }
-  .dress-text {
-    font-family: Georgia, serif; font-style: italic;
-    font-size: 13.5px; color: rgba(90,25,55,0.85); line-height: 1.75;
-  }
-  .dress-text strong { font-style: normal; color: rgba(90,25,55,0.95); display: block; font-size: 14px; }
-
-  /* ── Footer ── */
-  .invite-footer {
-    text-align: center; font-size: 10px; letter-spacing: 3px;
-    text-transform: uppercase; color: #c0a0b4;
-    padding: 4px 0;
-  }
-
-  /* ── BOTÓN ANOTARSE ── */
-  .btn-register {
-    width: 100%;
-    background: linear-gradient(135deg, #e080b0, #c860a0);
-    color: #fff; border: none; cursor: pointer;
-    padding: 18px; border-radius: 16px;
-    font-size: 15px; font-weight: 700; letter-spacing: 2px;
-    text-transform: uppercase;
-    box-shadow: 0 8px 24px rgba(190,70,130,0.35);
-    transition: transform 0.15s, box-shadow 0.15s;
-    display: flex; align-items: center; justify-content: center; gap: 10px;
-    -webkit-appearance: none;
-  }
-  .btn-register:active { transform: scale(0.97); box-shadow: 0 4px 14px rgba(190,70,130,0.3); }
-
-  /* ════════════════════════════
-     VISTA 2 — FORMULARIO
-  ════════════════════════════ */
-  #view-form {
-    padding: 50px 20px 40px;
-    animation: fadeUp 0.5s ease both;
-  }
-
-  .form-card {
-    background: var(--white-pink);
-    border-radius: 28px; padding: 36px 24px;
-    width: 100%; max-width: 440px;
-    box-shadow: 0 16px 50px rgba(180,100,140,0.15);
-    text-align: center; position: relative; overflow: hidden;
-  }
-  .form-card::before {
-    content:''; position:absolute; top:-50px; right:-50px;
-    width:180px; height:180px; border-radius:50%;
-    background:rgba(248,200,224,0.25); pointer-events:none;
-  }
-
-  .form-flowers { font-size: 22px; letter-spacing: 8px; opacity: 0.45; margin-bottom: 18px; }
-
-  .form-title {
-    font-family: Georgia, serif; font-size: 26px; font-weight: 400;
-    color: var(--rose-text); margin-bottom: 6px; line-height: 1.3;
-  }
-  .form-title em { font-style: italic; color: var(--pink-accent); }
-
-  .form-sub {
-    font-family: Georgia, serif; font-style: italic;
-    font-size: 13.5px; color: #c8a0b8; margin-bottom: 28px; line-height: 1.6;
-  }
-
-  .field-group { display: flex; flex-direction: column; gap: 16px; margin-bottom: 24px; text-align: left; }
-
-  .field { display: flex; flex-direction: column; gap: 6px; }
-  .field label {
-    font-size: 9.5px; letter-spacing: 3px; text-transform: uppercase;
-    color: var(--pink-accent); font-weight: 600; padding-left: 4px;
-  }
-  .field input {
-    border: 1.5px solid #f0c0d8; border-radius: 14px;
-    padding: 14px 18px; font-size: 16px;
-    font-family: 'Trebuchet MS', sans-serif;
-    color: var(--rose-dark); background: #fff9fc; outline: none;
-    transition: border-color 0.2s, box-shadow 0.2s;
-    -webkit-appearance: none;
-  }
-  .field input:focus {
-    border-color: var(--pink-accent);
-    box-shadow: 0 0 0 3px rgba(216,112,168,0.15);
-  }
-  .field input::placeholder { color: #dbb0c8; }
-  .field input.invalid { border-color: #e05070; }
-  .field-error {
-    color: #e05070; font-size: 11.5px; display: none;
-    padding-left: 4px;
-  }
-
-  .btn-submit {
-    width: 100%;
-    background: linear-gradient(135deg, #e080b0, #c860a0);
-    color: #fff; border: none; cursor: pointer;
-    padding: 17px; border-radius: 14px;
-    font-size: 15px; font-weight: 700; letter-spacing: 2px;
-    text-transform: uppercase;
-    box-shadow: 0 8px 24px rgba(190,70,130,0.3);
-    display: flex; align-items: center; justify-content: center; gap: 10px;
-    transition: transform 0.15s;
-    -webkit-appearance: none;
-  }
-  .btn-submit:active { transform: scale(0.97); }
-
-  .btn-back {
-    background: none; border: none; cursor: pointer;
-    color: #c8a0b8; font-size: 13px; letter-spacing: 1px;
-    margin-top: 16px; padding: 6px 0;
-    display: flex; align-items: center; justify-content: center; gap: 4px;
-    transition: color 0.2s;
-    width: 100%;
-  }
-  .btn-back:active { color: var(--rose-text); }
-
-  /* ════════════════════════════
-     VISTA 3 — CONFIRMACIÓN
-  ════════════════════════════ */
-  #view-confirm {
-    padding: 50px 20px 40px;
-    animation: fadeUp 0.5s ease both;
-  }
-
-  .confirm-card {
-    background: var(--white-pink);
-    border-radius: 28px; padding: 48px 28px;
-    width: 100%; max-width: 440px;
-    box-shadow: 0 16px 50px rgba(180,100,140,0.15);
-    text-align: center; position: relative; overflow: hidden;
-  }
-  .confirm-card::before {
-    content:''; position:absolute; top:-60px; right:-60px;
-    width:200px; height:200px; border-radius:50%;
-    background:rgba(248,200,224,0.22); pointer-events:none;
-  }
-  .confirm-card::after {
-    content:''; position:absolute; bottom:-60px; left:-60px;
-    width:200px; height:200px; border-radius:50%;
-    background:rgba(240,180,215,0.18); pointer-events:none;
-  }
-
-  .confirm-big { font-size: 64px; display: block; margin-bottom: 16px; animation: heartbeat 2.6s ease-in-out infinite; }
-  .confirm-title {
-    font-family: Georgia, serif; font-size: 28px; font-weight: 400;
-    color: var(--rose-text); margin-bottom: 10px;
-  }
-  .confirm-name {
-    font-family: Georgia, serif; font-style: italic;
-    font-size: 22px; color: var(--pink-accent);
-    margin-bottom: 20px; line-height: 1.3;
-  }
-  .confirm-msg {
-    font-size: 14px; color: #b0909e; line-height: 1.9;
-    margin-bottom: 28px;
-  }
-  .confirm-msg strong { color: var(--rose-text); font-size: 15px; }
-
-  .confirm-details {
-    background: linear-gradient(135deg, #fde2ef, #f9d2e6);
-    border-radius: 16px; padding: 18px 20px; margin-bottom: 24px;
-    display: flex; flex-direction: column; gap: 10px;
-    border: 1px solid rgba(230,160,195,0.2);
-  }
-  .confirm-detail-row { display: flex; align-items: center; gap: 12px; text-align: left; }
-  .confirm-detail-icon {
-    width: 34px; height: 34px; border-radius: 50%;
-    background: rgba(255,255,255,0.65); display: flex;
-    align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0;
-  }
-  .confirm-detail-text { font-family: Georgia, serif; font-size: 14px; color: var(--rose-dark); line-height: 1.4; }
-
-  .btn-ver-inv {
-    width: 100%; background: none;
-    border: 1.5px solid #f0c0d8; cursor: pointer;
-    padding: 14px; border-radius: 14px;
-    color: var(--rose-text); font-size: 13px;
-    letter-spacing: 2px; text-transform: uppercase;
-    transition: background 0.2s;
-    -webkit-appearance: none;
-  }
-  .btn-ver-inv:active { background: #fde8f2; }
-
-  /* ── Spinner ── */
-  .spinner {
-    display: inline-block;
-    width: 16px; height: 16px;
-    border: 2px solid rgba(255,255,255,0.4);
-    border-top-color: #fff;
-    border-radius: 50%;
-    animation: spin 0.7s linear infinite;
-    vertical-align: middle;
-  }
-  @keyframes spin { to { transform: rotate(360deg); } }
-
-  .btn-submit:disabled { opacity: 0.8; cursor: not-allowed; transform: none !important; }
-
-  /* ── Print ── */
-  @media print {
-    .petal { display:none; }
-    #view-form, #view-confirm { display:none !important; }
-    #view-invite { display:flex !important; }
-    body { background: #fce8f2 !important; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
-    .hero, .bring-card, .info-card {
-      -webkit-print-color-adjust:exact; print-color-adjust:exact;
-    }
-    .btn-register { display:none; }
-  }
+  padding: 0 0 48px;
+  animation: fadeUp 0.8s ease both;
+}
+  body {
+  min-height: 100vh;
+  background:
+    radial-gradient(ellipse at 10% 10%, #fde0ee 0%, transparent 50%),
+    radial-gradient(ellipse at 90% 90%, #f8d0e8 0%, transparent 50%),
+    var(--bg);
+  font-family: 'Nunito', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+}
 </style>
 </head>
 <body>
@@ -440,138 +449,119 @@
 <div class="petal" style="left:62%; animation-duration:10s; animation-delay:5.5s;">🌷</div>
 <div class="petal" style="left:88%; animation-duration:9s;  animation-delay:1.5s;">🌸</div>
 
-<!-- ══════════════════════════════════════
+<!-- ══════════════════════════
      VISTA 1 — INVITACIÓN
-══════════════════════════════════════ -->
+══════════════════════════ -->
 <div id="view-invite" class="view active">
+<div class="invite-card">
 
-  <!-- Hero / Cabecera -->
-  <div class="hero">
-    <div class="hero-flowers">
-      <svg width="32" height="32" viewBox="0 0 36 36" fill="none">
-        <ellipse cx="18" cy="8" rx="5" ry="8" fill="rgba(255,255,255,0.55)" transform="rotate(0   18 18)"/>
-        <ellipse cx="18" cy="8" rx="5" ry="8" fill="rgba(255,255,255,0.55)" transform="rotate(72  18 18)"/>
-        <ellipse cx="18" cy="8" rx="5" ry="8" fill="rgba(255,255,255,0.55)" transform="rotate(144 18 18)"/>
-        <ellipse cx="18" cy="8" rx="5" ry="8" fill="rgba(255,255,255,0.55)" transform="rotate(216 18 18)"/>
-        <ellipse cx="18" cy="8" rx="5" ry="8" fill="rgba(255,255,255,0.55)" transform="rotate(288 18 18)"/>
-        <circle cx="18" cy="18" r="4" fill="rgba(255,220,235,0.8)"/>
-      </svg>
-      <svg width="22" height="22" viewBox="0 0 36 36" fill="none">
-        <ellipse cx="18" cy="8" rx="5" ry="8" fill="rgba(255,255,255,0.4)" transform="rotate(0   18 18)"/>
-        <ellipse cx="18" cy="8" rx="5" ry="8" fill="rgba(255,255,255,0.4)" transform="rotate(72  18 18)"/>
-        <ellipse cx="18" cy="8" rx="5" ry="8" fill="rgba(255,255,255,0.4)" transform="rotate(144 18 18)"/>
-        <ellipse cx="18" cy="8" rx="5" ry="8" fill="rgba(255,255,255,0.4)" transform="rotate(216 18 18)"/>
-        <ellipse cx="18" cy="8" rx="5" ry="8" fill="rgba(255,255,255,0.4)" transform="rotate(288 18 18)"/>
-        <circle cx="18" cy="18" r="4" fill="rgba(255,210,230,0.7)"/>
-      </svg>
-      <svg width="32" height="32" viewBox="0 0 36 36" fill="none">
-        <ellipse cx="18" cy="8" rx="5" ry="8" fill="rgba(255,255,255,0.5)" transform="rotate(0   18 18)"/>
-        <ellipse cx="18" cy="8" rx="5" ry="8" fill="rgba(255,255,255,0.5)" transform="rotate(72  18 18)"/>
-        <ellipse cx="18" cy="8" rx="5" ry="8" fill="rgba(255,255,255,0.5)" transform="rotate(144 18 18)"/>
-        <ellipse cx="18" cy="8" rx="5" ry="8" fill="rgba(255,255,255,0.5)" transform="rotate(216 18 18)"/>
-        <ellipse cx="18" cy="8" rx="5" ry="8" fill="rgba(255,255,255,0.5)" transform="rotate(288 18 18)"/>
-        <circle cx="18" cy="18" r="4" fill="rgba(255,215,235,0.8)"/>
-      </svg>
-    </div>
-
-    <p class="hero-tag">Te invitamos con amor</p>
-
-    <h1 class="hero-title">
-      Taller de<br>
-      <em>Sanidad</em><br>
-      para Chicas
-    </h1>
-
-    <p class="hero-sub">Un espacio para florecer y sanar</p>
-    <div class="hero-heart">💗</div>
+  <!-- Cabecera título recto -->
+  <div class="header-section">
+    <p class="header-eyebrow">Te invitamos con amor</p>
+    <h1 class="header-title">Taller de Sanidad</h1>
+    <div class="header-line"></div>
   </div>
 
-  <!-- Contenido desplazable -->
-  <div class="invite-body">
+  <!-- Flor central -->
+  <div class="flower-section">
+    <!-- Flor SVG tulipán pastel -->
+    <svg class="flower-svg" viewBox="0 0 220 280" xmlns="http://www.w3.org/2000/svg">
+      <path d="M 110 260 Q 108 200 110 160" stroke="#8ec47a" stroke-width="5" fill="none" stroke-linecap="round"/>
+      <path d="M 110 220 Q 75 195 68 170 Q 90 180 110 200" fill="#a8d890" opacity="0.85"/>
+      <path d="M 110 210 Q 145 185 152 160 Q 130 172 110 195" fill="#b8e0a0" opacity="0.8"/>
+      <ellipse cx="78"  cy="108" rx="28" ry="58" fill="#f0b0c8" opacity="0.85" transform="rotate(-22 78 108)"/>
+      <ellipse cx="142" cy="108" rx="28" ry="58" fill="#f0b0c8" opacity="0.85" transform="rotate(22 142 108)"/>
+      <ellipse cx="90"  cy="95"  rx="24" ry="52" fill="#f8c8d8" opacity="0.9"  transform="rotate(-10 90 95)"/>
+      <ellipse cx="130" cy="95"  rx="24" ry="52" fill="#f8c8d8" opacity="0.9"  transform="rotate(10 130 95)"/>
+      <ellipse cx="110" cy="88"  rx="22" ry="56" fill="#fce0e8" opacity="0.95"/>
+      <line x1="110" y1="80" x2="105" y2="58" stroke="#e8a0b8" stroke-width="2"/>
+      <line x1="110" y1="80" x2="115" y2="56" stroke="#e8a0b8" stroke-width="2"/>
+      <line x1="110" y1="80" x2="110" y2="54" stroke="#d890b0" stroke-width="2"/>
+      <circle cx="105" cy="57" r="3.5" fill="#d070a0"/>
+      <circle cx="115" cy="55" r="3.5" fill="#d070a0"/>
+      <circle cx="110" cy="53" r="3.5" fill="#c060a0"/>
+      <ellipse cx="104" cy="75" rx="5" ry="12" fill="rgba(255,255,255,0.35)" transform="rotate(-8 104 75)"/>
+    </svg>
+  </div>
 
-    <!-- Versículo -->
-    <div class="verse-card">
-      <p class="verse-text">
-        "Él sana a los quebrantados<br>de corazón y venda sus heridas."
+  <!-- Pétalos separador -->
+  <div class="petal-divider">🌸 🌷 🌸</div>
+
+  <!-- Versículo -->
+  <div class="verse-section">
+    <p class="verse-text">
+      "Él sana a los quebrantados de corazón,<br>
+      y venda sus heridas."
+    </p>
+    <span class="verse-ref">Salmos 147:3</span>
+  </div>
+
+  <!-- Info evento -->
+  <div class="info-section">
+    <div class="info-row">
+      <div class="info-icon">📅</div>
+      <div>
+        <span class="info-label">Fecha</span>
+        <span class="info-val">Sábado, 06 de Junio 2026</span>
+      </div>
+    </div>
+    <div class="info-row">
+      <div class="info-icon">🕙</div>
+      <div>
+        <span class="info-label">Hora</span>
+        <span class="info-val">17 PM</span>
+      </div>
+    </div>
+    <div class="info-row">
+      <div class="info-icon">📍</div>
+      <div>
+        <span class="info-label">Lugar</span>
+        <span class="info-val">Parque de Cervantes (Zona Picnic)<br>Av.Diagonal, 706, Les Corts, 08034, Barcelona</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Llevar + vestido -->
+  <div class="bring-section">
+    <p class="bring-heading">¿Qué llevar?</p>
+    <div class="bring-list">
+      <div class="bring-item">
+        <span class="bring-dot"></span>
+        <span>Un <strong>corazón dispuesto</strong> a recibir sanidad y amor</span>
+      </div>
+      <div class="bring-item">
+        <span class="bring-dot"></span>
+        <span>Tu Biblia y un cuaderno para escribir</span>
+      </div>
+      <div class="bring-item">
+        <span class="bring-dot"></span>
+        <span>Fe para creer que hay libertad esperándote</span>
+      </div>
+    </div>
+    <div class="divider-soft"></div>
+    <div class="dress-row">
+      <span class="dress-icon">🌸</span>
+      <p class="dress-text">
+        <strong>¡Ven bonita y radiante!</strong>
+        Anímate a venir con colores pasteles —<br>rosas, lilas, blancos, menta…<br>¡Queremos verte hermosa ese día!
       </p>
-      <span class="verse-ref">Salmos 147:3</span>
     </div>
+  </div>
 
-    <!-- Info -->
-    <div class="info-card">
-      <div class="info-row">
-        <div class="info-icon-wrap">📅</div>
-        <div>
-          <span class="info-label">Fecha</span>
-          <span class="info-val">Sábado, 06 de Junio 2026</span>
-        </div>
-      </div>
-      <div class="info-row">
-        <div class="info-icon-wrap">🕙</div>
-        <div>
-          <span class="info-label">Hora</span>
-          <span class="info-val">17:00 PM</span>
-        </div>
-      </div>
-      <div class="info-row">
-        <div class="info-icon-wrap">📍</div>
-        <div>
-          <span class="info-label">Lugar</span>
-          <span class="info-val">Parque de Cervantes (Zona Picnic)<br>Av.Diagonal, 706, Les Corts, 08034, Barcelona</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Nota cierre -->
-    <div class="closing-card">
-      <p class="closing-text">
-        Un encuentro íntimo diseñado para ti,<br>
-        donde encontrarás <strong>paz, restauración</strong><br>
-        y el abrazo de Dios a tu corazón. 🤍
-      </p>
-    </div>
-
-    <!-- Llevar + Vestido -->
-    <div class="bring-card">
-      <p class="bring-heading">¿Qué llevar?</p>
-      <div class="bring-list">
-        <div class="bring-item">
-          <span class="bring-dot"></span>
-          <span>Un <strong>corazón dispuesto</strong> a recibir sanidad y amor</span>
-        </div>
-        <div class="bring-item">
-          <span class="bring-dot"></span>
-          <span>Tu Biblia y un cuaderno para escribir</span>
-        </div>
-        <div class="bring-item">
-          <span class="bring-dot"></span>
-          <span>Fe para creer que eres valiosa y amada🌷</span>
-        </div>
-      </div>
-
-      <div class="divider-soft"></div>
-
-      <div class="dress-row">
-        <span class="dress-icon-big">👗</span>
-        <p class="dress-text">
-          ¿Tienes un vestido pastel?
-          <strong>¡Úsalo! (es opcional)</strong>
-          Ven con colores suaves —<br>¡Ven a ser parte de algo hermoso!
-        </p>
-      </div>
-    </div>
-
-    <!-- Botón -->
+  <!-- Botón -->
+  <div class="btn-wrap">
     <button class="btn-register" onclick="mostrarFormulario()">
       🌸 &nbsp; ¡Me anoto!
     </button>
-
   </div>
+
+
+</div>
 </div>
 
-<!-- ══════════════════════════════════════
+<!-- ══════════════════════════
      VISTA 2 — FORMULARIO
-══════════════════════════════════════ -->
+══════════════════════════ -->
 <div id="view-form" class="view">
   <div class="form-card">
     <div class="form-flowers">🌸 🌷 🌸</div>
@@ -596,48 +586,39 @@
     <button id="btn-submit" class="btn-submit" onclick="enviarRegistro()">
       💗 &nbsp; Reservar mi lugar
     </button>
-
-    <p id="msg-error" style="display:none; color:#e05070; font-size:13px; margin-top:12px; text-align:center;">
+    <p id="msg-error" class="msg-error-global">
       Hubo un problema al guardar. Intenta de nuevo. 🌸
     </p>
-
     <button class="btn-back" onclick="cambiarVista('view-invite')">
       ← Volver a la invitación
     </button>
   </div>
 </div>
 
-<!-- ══════════════════════════════════════
+<!-- ══════════════════════════
      VISTA 3 — CONFIRMACIÓN
-══════════════════════════════════════ -->
+══════════════════════════ -->
 <div id="view-confirm" class="view">
   <div class="confirm-card">
     <span class="confirm-big">🌸</span>
     <h2 class="confirm-title">¡Estás registrada!</h2>
     <p class="confirm-name" id="confirm-name-display"></p>
-    <p class="confirm-msg">
-      Tu lugar está reservado con mucho amor. 💗<br>
-      ¡Te esperamos con los brazos abiertos!
-    </p>
-
+    <p class="confirm-msg">Tu lugar está reservado con mucho amor. 💗<br>¡Te esperamos con los brazos abiertos!</p>
     <div class="confirm-details">
-      <div class="confirm-detail-row">
-        <div class="confirm-detail-icon">📅</div>
-        <span class="confirm-detail-text">Sábado, 06 de Junio 2026</span>
+      <div class="confirm-row">
+        <div class="confirm-icon">📅</div>
+        <span class="confirm-detail-text">Sábado, 26 de Abril 2025</span>
       </div>
-      <div class="confirm-detail-row">
-        <div class="confirm-detail-icon">🕙</div>
-        <span class="confirm-detail-text">17 PM</span>
+      <div class="confirm-row">
+        <div class="confirm-icon">🕙</div>
+        <span class="confirm-detail-text">9:00 AM – 1:00 PM</span>
       </div>
-      <div class="confirm-detail-row">
-        <div class="confirm-detail-icon">📍</div>
-        <span class="confirm-detail-text">Parque de Cervantes (Zona Picnic)<br>Av.Diagonal, 706, Les Corts, 08034, Barcelona</span>
+      <div class="confirm-row">
+        <div class="confirm-icon">📍</div>
+        <span class="confirm-detail-text">Salón Principal de la Iglesia<br>Calle Principal #123</span>
       </div>
     </div>
-
-    <button class="btn-ver-inv" onclick="cambiarVista('view-invite')">
-      ← Ver invitación
-    </button>
+    <button class="btn-ver-inv" onclick="cambiarVista('view-invite')">← Ver invitación</button>
   </div>
 </div>
 
@@ -647,7 +628,7 @@
   function cambiarVista(id) {
     document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
     document.getElementById(id).classList.add('active');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top:0, behavior:'smooth' });
   }
 
   function mostrarFormulario() {
@@ -659,7 +640,7 @@
     const btn = document.getElementById('btn-submit');
     btn.disabled = on;
     btn.innerHTML = on
-      ? '<span class="spinner"></span> Guardando...'
+      ? '<span class="spinner"></span>&nbsp; Guardando...'
       : '💗 &nbsp; Reservar mi lugar';
   }
 
@@ -674,40 +655,24 @@
     msgErr.style.display = 'none';
 
     if (!nombre.value.trim()) {
-      nombre.classList.add('invalid');
-      errN.style.display = 'block';
-      ok = false;
-    } else {
-      nombre.classList.remove('invalid');
-      errN.style.display = 'none';
-    }
+      nombre.classList.add('invalid'); errN.style.display = 'block'; ok = false;
+    } else { nombre.classList.remove('invalid'); errN.style.display = 'none'; }
 
     if (!apellido.value.trim()) {
-      apellido.classList.add('invalid');
-      errA.style.display = 'block';
-      ok = false;
-    } else {
-      apellido.classList.remove('invalid');
-      errA.style.display = 'none';
-    }
+      apellido.classList.add('invalid'); errA.style.display = 'block'; ok = false;
+    } else { apellido.classList.remove('invalid'); errA.style.display = 'none'; }
 
     if (!ok) return;
 
     const nombreCompleto = nombre.value.trim() + ' ' + apellido.value.trim();
     setLoading(true);
 
-    // Enviar a Google Sheets
     fetch(SHEET_URL, {
-      method: 'POST',
-      mode: 'no-cors',
+      method: 'POST', mode: 'no-cors',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        nombre:   nombre.value.trim(),
-        apellido: apellido.value.trim()
-      })
+      body: JSON.stringify({ nombre: nombre.value.trim(), apellido: apellido.value.trim() })
     })
     .then(() => {
-      // no-cors no devuelve respuesta legible, pero si llegó aquí es éxito
       document.getElementById('confirm-name-display').textContent = nombreCompleto;
       setLoading(false);
       cambiarVista('view-confirm');
@@ -718,14 +683,13 @@
     });
   }
 
-  // Validación en tiempo real
-  ['inp-nombre', 'inp-apellido'].forEach(id => {
+  ['inp-nombre','inp-apellido'].forEach(id => {
     const el  = document.getElementById(id);
-    const key = id.replace('inp-', '');
+    const key = id.replace('inp-','');
     el.addEventListener('input', () => {
       if (el.value.trim()) {
         el.classList.remove('invalid');
-        document.getElementById('err-' + key).style.display = 'none';
+        document.getElementById('err-'+key).style.display = 'none';
       }
     });
     el.addEventListener('keydown', e => {
