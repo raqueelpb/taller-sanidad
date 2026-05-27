@@ -4,22 +4,20 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <meta name="theme-color" content="#f8c8de">
-<title>Taller de Sanidad</title>
+<title>Taller de Sanidad para Chicas</title>
 <style>
   *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
 
   :root {
-    --cream:       #fdf6f0;
+    --pink-bg:     #fef0f6;
     --pink-light:  #fce8f2;
-    --pink-card:   #f9daea;
     --pink-mid:    #f5c0d8;
     --pink-soft:   #f0aece;
     --pink-accent: #d870a8;
     --rose-text:   #b05880;
     --rose-dark:   #8a3860;
-    --green-stem:  #7aab6a;
-    --title-color: #6a7a6a;
     --white-pink:  #fff8fb;
+    --panel-left:  linear-gradient(170deg, #f8c8de 0%, #eeaacc 60%, #e290be 100%);
     --panel-right: linear-gradient(170deg, #fcd8eb 0%, #f5b8d8 60%, #eeaacc 100%);
   }
 
@@ -27,7 +25,10 @@
 
   body {
     min-height: 100vh;
-    background: var(--cream);
+    background:
+      radial-gradient(ellipse at 10% 10%, #fdd6ea 0%, transparent 50%),
+      radial-gradient(ellipse at 90% 90%, #f5c8e0 0%, transparent 50%),
+      var(--pink-bg);
     font-family: 'Trebuchet MS', Arial, sans-serif;
     color: #6a3050;
     -webkit-font-smoothing: antialiased;
@@ -36,163 +37,153 @@
   /* ════ PÉTALOS FLOTANTES ════ */
   .petal {
     position: fixed; pointer-events: none; z-index: 0;
-    font-size: 16px; opacity: 0;
-    top: -30px;
+    font-size: 13px; opacity: 0;
     animation: petalFall linear infinite;
   }
   @keyframes petalFall {
-    0%   { transform: translateY(0px)    rotate(0deg)   translateX(0px);   opacity: 0.75; }
-    30%  { opacity: 0.55; }
-    70%  { transform: translateY(70vh)   rotate(200deg) translateX(14px);  opacity: 0.3; }
-    100% { transform: translateY(108vh)  rotate(360deg) translateX(-10px); opacity: 0;   }
+    0%   { transform: translateY(-20px) rotate(0deg)   translateX(0px);   opacity: 0.5; }
+    50%  { transform: translateY(48vh)  rotate(160deg) translateX(10px);  opacity: 0.35;}
+    100% { transform: translateY(102vh) rotate(320deg) translateX(-8px);  opacity: 0;  }
   }
 
   /* ════ VISTAS ════ */
-  .view { display: none; flex-direction: column; align-items: center; min-height: 100vh; position: relative; z-index: 1; background: transparent; }
+  .view { display: none; flex-direction: column; align-items: center; min-height: 100vh; }
   .view.active { display: flex; }
 
   /* ════════════════════════════
      VISTA 1 — INVITACIÓN
   ════════════════════════════ */
   #view-invite {
-    padding: 0 0 50px;
+    padding: 0 0 40px;
     animation: fadeUp 0.7s ease both;
-    background: var(--cream);
-    position: relative;
-    z-index: 1;
   }
   @keyframes fadeUp {
     from { opacity:0; transform:translateY(18px); }
     to   { opacity:1; transform:translateY(0); }
   }
 
-  /* ── Cabecera superior limpia ── */
-  .page-header {
+  /* ── Cabecera hero ── */
+  .hero {
     width: 100%;
-    padding: 40px 24px 0;
+    background: var(--panel-left);
+    padding: 52px 28px 44px;
+    display: flex; flex-direction: column;
+    align-items: center; gap: 18px;
+    position: relative; overflow: hidden;
     text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
+  }
+  .hero::before {
+    content:''; position:absolute; top:-60px; left:-60px;
+    width:220px; height:220px; border-radius:50%;
+    background:rgba(255,255,255,0.15); pointer-events:none;
+  }
+  .hero::after {
+    content:''; position:absolute; bottom:-70px; right:-50px;
+    width:240px; height:240px; border-radius:50%;
+    background:rgba(255,255,255,0.1); pointer-events:none;
   }
 
-  .page-title {
-    font-family: Georgia, 'Times New Roman', serif;
-    font-size: 13px;
-    letter-spacing: 8px;
-    text-transform: uppercase;
-    color: var(--title-color);
-    font-weight: 400;
-  }
-
-  .title-underline {
-    width: 40px;
-    height: 1.5px;
-    background: var(--title-color);
-    opacity: 0.5;
-    margin: 4px auto 0;
-  }
-
-  .header-sub {
-    font-family: Georgia, serif;
-    font-style: italic;
-    font-size: 12px;
-    color: #c0a0b0;
-    letter-spacing: 1px;
-    margin-top: 6px;
-  }
-
-  /* ── Imagen central tulipán SVG ── */
-  .tulip-wrap {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 30px 0 20px;
-    animation: floatY 5s ease-in-out infinite;
+  .hero-flowers {
+    display: flex; gap: 10px; align-items: center;
+    position: relative; z-index: 1;
+    animation: floatY 4s ease-in-out infinite;
   }
   @keyframes floatY {
     0%,100%{ transform:translateY(0); }
-    50%    { transform:translateY(-6px); }
+    50%    { transform:translateY(-5px); }
   }
 
-  /* ── Iconitos decorativos entre tulipán y versículo ── */
-  .deco-row {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 14px;
-    font-size: 14px;
-    opacity: 0.6;
-    margin-bottom: 6px;
+  .hero-tag {
+    font-size: 10px; letter-spacing: 5px; text-transform: uppercase;
+    color: rgba(255,255,255,0.75); font-weight: 400;
+    position: relative; z-index: 1;
   }
 
-  /* ── Versículo ── */
-  .verse-section {
-    text-align: center;
-    padding: 0 32px 24px;
+  .hero-title {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 40px; font-weight: 400; line-height: 1.18;
+    color: #fff;
+    text-shadow: 0 2px 16px rgba(160,60,100,0.25);
+    position: relative; z-index: 1;
   }
-  .verse-text {
-    font-family: Georgia, serif;
+  .hero-title em {
     font-style: italic;
-    font-size: 15px;
-    color: #8a6070;
-    line-height: 2;
+    color: rgba(255,255,255,0.88);
   }
-  .verse-ref {
-    display: block;
-    margin-top: 8px;
-    font-size: 9.5px;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    color: #c0a0b0;
+
+  .hero-sub {
+    font-family: Georgia, serif; font-style: italic;
+    font-size: 15px; color: rgba(255,255,255,0.82);
+    position: relative; z-index: 1;
+  }
+
+  .hero-heart {
+    font-size: 44px; position: relative; z-index: 1;
+    animation: heartbeat 2.6s ease-in-out infinite;
+    filter: drop-shadow(0 3px 12px rgba(220,100,150,0.35));
+  }
+  @keyframes heartbeat {
+    0%,100%{ transform:scale(1); }
+    40%    { transform:scale(1.13); }
+    60%    { transform:scale(1.08); }
   }
 
   /* ── Cuerpo de la invitación ── */
   .invite-body {
-    width: 100%;
-    max-width: 480px;
+    width: 100%; max-width: 480px;
     padding: 0 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+    display: flex; flex-direction: column; gap: 20px;
+    margin-top: -1px;
+  }
+
+  /* ── Versículo ── */
+  .verse-card {
+    background: var(--white-pink);
+    border-radius: 20px; padding: 24px 22px;
+    text-align: center;
+    box-shadow: 0 4px 18px rgba(180,100,140,0.1);
+    margin-top: 20px;
+  }
+  .verse-text {
+    font-family: Georgia, serif; font-style: italic;
+    font-size: 16px; color: var(--rose-text); line-height: 1.9;
+  }
+  .verse-ref {
+    display: block; margin-top: 10px; font-size: 10px;
+    letter-spacing: 3px; text-transform: uppercase; color: #c8a0b8;
   }
 
   /* ── Info box ── */
   .info-card {
-    background: #fce8f2;
-    border-radius: 18px;
-    padding: 22px 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    border: none;
-    box-shadow: none;
+    background: linear-gradient(135deg, #fde2ef, #f9d2e6);
+    border-radius: 20px; padding: 22px 20px;
+    display: flex; flex-direction: column; gap: 16px;
+    border: 1px solid rgba(230,160,195,0.2);
+    box-shadow: 0 4px 18px rgba(180,100,140,0.1);
   }
   .info-row { display: flex; align-items: center; gap: 14px; }
   .info-icon-wrap {
-    width: 38px; height: 38px; border-radius: 50%;
-    background: rgba(255,255,255,0.7);
+    width: 40px; height: 40px; border-radius: 50%;
+    background: rgba(255,255,255,0.65);
     display: flex; align-items: center; justify-content: center;
-    font-size: 17px; flex-shrink: 0;
+    font-size: 18px; flex-shrink: 0;
+    box-shadow: 0 2px 8px rgba(200,100,150,0.12);
   }
   .info-label {
-    font-size: 8.5px; letter-spacing: 3px; text-transform: uppercase;
+    font-size: 9px; letter-spacing: 3px; text-transform: uppercase;
     color: var(--pink-accent); display: block; margin-bottom: 3px;
   }
   .info-val {
-    font-family: Georgia, serif; font-size: 14.5px;
+    font-family: Georgia, serif; font-size: 15px;
     color: var(--rose-dark); line-height: 1.4;
   }
 
   /* ── Nota cierre ── */
   .closing-card {
     background: var(--white-pink);
-    border-radius: 18px; padding: 20px 22px;
+    border-radius: 20px; padding: 22px;
     text-align: center;
-    box-shadow: none;
-    border: 1px solid rgba(240,180,210,0.25);
+    box-shadow: 0 4px 18px rgba(180,100,140,0.1);
   }
   .closing-text {
     font-family: Georgia, serif; font-style: italic;
@@ -200,62 +191,46 @@
   }
   .closing-text strong { font-style: normal; color: var(--rose-text); }
 
-  /* ── Llevar + Sección pasteles ── */
+  /* ── Llevar + Vestido ── */
   .bring-card {
-    background: #f9daea;
-    border-radius: 18px; padding: 24px 22px;
-    box-shadow: none;
+    background: var(--panel-right);
+    border-radius: 20px; padding: 24px 22px;
+    box-shadow: 0 4px 18px rgba(180,100,140,0.12);
     position: relative; overflow: hidden;
   }
+  .bring-card::after {
+    content:''; position:absolute; bottom:-40px; right:-40px;
+    width:140px; height:140px; border-radius:50%;
+    background:rgba(255,255,255,0.12); pointer-events:none;
+  }
   .bring-heading {
-    font-family: Georgia, serif; font-size: 11px;
+    font-family: Georgia, serif; font-size: 12px;
     letter-spacing: 4px; text-transform: uppercase;
-    color: rgba(100,30,65,0.55); margin-bottom: 16px; text-align: center;
+    color: rgba(100,30,65,0.65); margin-bottom: 16px; text-align: center;
   }
   .bring-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px; }
   .bring-item { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: rgba(90,25,55,0.85); line-height: 1.55; }
   .bring-dot {
     width: 7px; height: 7px; border-radius: 50%;
-    background: rgba(255,255,255,0.8); flex-shrink: 0; margin-top: 5px;
-    box-shadow: 0 1px 4px rgba(180,80,120,0.25);
+    background: rgba(255,255,255,0.7); flex-shrink: 0; margin-top: 5px;
+    box-shadow: 0 1px 4px rgba(180,80,120,0.3);
   }
 
   .divider-soft {
     width: 100%; height: 1px;
-    background: rgba(255,255,255,0.45);
-    margin: 4px 0 20px;
+    background: rgba(255,255,255,0.35);
+    margin: 4px 0 18px;
   }
 
-  /* ── Sección pasteles ── */
-  .pastel-row {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 14px;
-    text-align: center;
+  .dress-row {
+    display: flex; align-items: flex-start; gap: 14px;
   }
-
-  /* Paleta de colores SVG */
-  .pastel-palette {
-    animation: floatY 4s ease-in-out infinite;
-    filter: drop-shadow(0 4px 14px rgba(200,120,160,0.2));
+  .dress-icon-big { font-size: 34px; flex-shrink: 0; }
+  .dress-text {
+    font-family: Georgia, serif; font-style: italic;
+    font-size: 13.5px; color: rgba(90,25,55,0.85); line-height: 1.75;
   }
-
-  .pastel-text {
-    font-family: Georgia, serif;
-    font-style: italic;
-    font-size: 14px;
-    color: rgba(90,25,55,0.85);
-    line-height: 1.8;
-  }
-  .pastel-text .highlight {
-    font-style: normal;
-    font-weight: 600;
-    color: rgba(90,25,55,0.95);
-    display: block;
-    font-size: 15px;
-    margin-bottom: 4px;
-  }
+  .dress-text strong { font-style: normal; color: rgba(90,25,55,0.95); display: block; font-size: 14px; }
 
   /* ── Footer ── */
   .invite-footer {
@@ -272,7 +247,7 @@
     padding: 18px; border-radius: 16px;
     font-size: 15px; font-weight: 700; letter-spacing: 2px;
     text-transform: uppercase;
-    box-shadow: 0 8px 24px rgba(190,70,130,0.28);
+    box-shadow: 0 8px 24px rgba(190,70,130,0.35);
     transition: transform 0.15s, box-shadow 0.15s;
     display: flex; align-items: center; justify-content: center; gap: 10px;
     -webkit-appearance: none;
@@ -285,22 +260,19 @@
   #view-form {
     padding: 50px 20px 40px;
     animation: fadeUp 0.5s ease both;
-    background: var(--cream);
-    position: relative;
-    z-index: 1;
   }
 
   .form-card {
     background: var(--white-pink);
     border-radius: 28px; padding: 36px 24px;
     width: 100%; max-width: 440px;
-    box-shadow: 0 16px 50px rgba(180,100,140,0.12);
+    box-shadow: 0 16px 50px rgba(180,100,140,0.15);
     text-align: center; position: relative; overflow: hidden;
   }
   .form-card::before {
     content:''; position:absolute; top:-50px; right:-50px;
     width:180px; height:180px; border-radius:50%;
-    background:rgba(248,200,224,0.2); pointer-events:none;
+    background:rgba(248,200,224,0.25); pointer-events:none;
   }
 
   .form-flowers { font-size: 22px; letter-spacing: 8px; opacity: 0.45; margin-bottom: 18px; }
@@ -372,35 +344,27 @@
   #view-confirm {
     padding: 50px 20px 40px;
     animation: fadeUp 0.5s ease both;
-    background: var(--cream);
-    position: relative;
-    z-index: 1;
   }
 
   .confirm-card {
     background: var(--white-pink);
     border-radius: 28px; padding: 48px 28px;
     width: 100%; max-width: 440px;
-    box-shadow: 0 16px 50px rgba(180,100,140,0.12);
+    box-shadow: 0 16px 50px rgba(180,100,140,0.15);
     text-align: center; position: relative; overflow: hidden;
   }
   .confirm-card::before {
     content:''; position:absolute; top:-60px; right:-60px;
     width:200px; height:200px; border-radius:50%;
-    background:rgba(248,200,224,0.18); pointer-events:none;
+    background:rgba(248,200,224,0.22); pointer-events:none;
   }
   .confirm-card::after {
     content:''; position:absolute; bottom:-60px; left:-60px;
     width:200px; height:200px; border-radius:50%;
-    background:rgba(240,180,215,0.14); pointer-events:none;
+    background:rgba(240,180,215,0.18); pointer-events:none;
   }
 
   .confirm-big { font-size: 64px; display: block; margin-bottom: 16px; animation: heartbeat 2.6s ease-in-out infinite; }
-  @keyframes heartbeat {
-    0%,100%{ transform:scale(1); }
-    40%    { transform:scale(1.13); }
-    60%    { transform:scale(1.08); }
-  }
   .confirm-title {
     font-family: Georgia, serif; font-size: 28px; font-weight: 400;
     color: var(--rose-text); margin-bottom: 10px;
@@ -414,16 +378,18 @@
     font-size: 14px; color: #b0909e; line-height: 1.9;
     margin-bottom: 28px;
   }
+  .confirm-msg strong { color: var(--rose-text); font-size: 15px; }
 
   .confirm-details {
-    background: #fce8f2;
+    background: linear-gradient(135deg, #fde2ef, #f9d2e6);
     border-radius: 16px; padding: 18px 20px; margin-bottom: 24px;
     display: flex; flex-direction: column; gap: 10px;
+    border: 1px solid rgba(230,160,195,0.2);
   }
   .confirm-detail-row { display: flex; align-items: center; gap: 12px; text-align: left; }
   .confirm-detail-icon {
     width: 34px; height: 34px; border-radius: 50%;
-    background: rgba(255,255,255,0.7); display: flex;
+    background: rgba(255,255,255,0.65); display: flex;
     align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0;
   }
   .confirm-detail-text { font-family: Georgia, serif; font-size: 14px; color: var(--rose-dark); line-height: 1.4; }
@@ -450,6 +416,7 @@
     vertical-align: middle;
   }
   @keyframes spin { to { transform: rotate(360deg); } }
+
   .btn-submit:disabled { opacity: 0.8; cursor: not-allowed; transform: none !important; }
 
   /* ── Print ── */
@@ -457,76 +424,78 @@
     .petal { display:none; }
     #view-form, #view-confirm { display:none !important; }
     #view-invite { display:flex !important; }
-    body { background: #fdf6f0 !important; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
-    .info-card, .bring-card { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+    body { background: #fce8f2 !important; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+    .hero, .bring-card, .info-card {
+      -webkit-print-color-adjust:exact; print-color-adjust:exact;
+    }
     .btn-register { display:none; }
   }
 </style>
 </head>
 <body>
 
-<!-- Pétalos generados por JS -->
+<!-- Pétalos sutiles -->
+<div class="petal" style="left:8%;  animation-duration:11s; animation-delay:0s;">🌸</div>
+<div class="petal" style="left:35%; animation-duration:14s; animation-delay:3s;">🌸</div>
+<div class="petal" style="left:62%; animation-duration:10s; animation-delay:5.5s;">🌷</div>
+<div class="petal" style="left:88%; animation-duration:9s;  animation-delay:1.5s;">🌸</div>
 
 <!-- ══════════════════════════════════════
      VISTA 1 — INVITACIÓN
 ══════════════════════════════════════ -->
 <div id="view-invite" class="view active">
 
-  <!-- Cabecera limpia estilo imagen -->
-  <div class="page-header">
-    <p class="page-title">Taller de Sanidad</p>
-    <div class="title-underline"></div>
-    <p class="header-sub">Te invitamos con amor</p>
-  </div>
+  <!-- Hero / Cabecera -->
+  <div class="hero">
+    <div class="hero-flowers">
+      <svg width="32" height="32" viewBox="0 0 36 36" fill="none">
+        <ellipse cx="18" cy="8" rx="5" ry="8" fill="rgba(255,255,255,0.55)" transform="rotate(0   18 18)"/>
+        <ellipse cx="18" cy="8" rx="5" ry="8" fill="rgba(255,255,255,0.55)" transform="rotate(72  18 18)"/>
+        <ellipse cx="18" cy="8" rx="5" ry="8" fill="rgba(255,255,255,0.55)" transform="rotate(144 18 18)"/>
+        <ellipse cx="18" cy="8" rx="5" ry="8" fill="rgba(255,255,255,0.55)" transform="rotate(216 18 18)"/>
+        <ellipse cx="18" cy="8" rx="5" ry="8" fill="rgba(255,255,255,0.55)" transform="rotate(288 18 18)"/>
+        <circle cx="18" cy="18" r="4" fill="rgba(255,220,235,0.8)"/>
+      </svg>
+      <svg width="22" height="22" viewBox="0 0 36 36" fill="none">
+        <ellipse cx="18" cy="8" rx="5" ry="8" fill="rgba(255,255,255,0.4)" transform="rotate(0   18 18)"/>
+        <ellipse cx="18" cy="8" rx="5" ry="8" fill="rgba(255,255,255,0.4)" transform="rotate(72  18 18)"/>
+        <ellipse cx="18" cy="8" rx="5" ry="8" fill="rgba(255,255,255,0.4)" transform="rotate(144 18 18)"/>
+        <ellipse cx="18" cy="8" rx="5" ry="8" fill="rgba(255,255,255,0.4)" transform="rotate(216 18 18)"/>
+        <ellipse cx="18" cy="8" rx="5" ry="8" fill="rgba(255,255,255,0.4)" transform="rotate(288 18 18)"/>
+        <circle cx="18" cy="18" r="4" fill="rgba(255,210,230,0.7)"/>
+      </svg>
+      <svg width="32" height="32" viewBox="0 0 36 36" fill="none">
+        <ellipse cx="18" cy="8" rx="5" ry="8" fill="rgba(255,255,255,0.5)" transform="rotate(0   18 18)"/>
+        <ellipse cx="18" cy="8" rx="5" ry="8" fill="rgba(255,255,255,0.5)" transform="rotate(72  18 18)"/>
+        <ellipse cx="18" cy="8" rx="5" ry="8" fill="rgba(255,255,255,0.5)" transform="rotate(144 18 18)"/>
+        <ellipse cx="18" cy="8" rx="5" ry="8" fill="rgba(255,255,255,0.5)" transform="rotate(216 18 18)"/>
+        <ellipse cx="18" cy="8" rx="5" ry="8" fill="rgba(255,255,255,0.5)" transform="rotate(288 18 18)"/>
+        <circle cx="18" cy="18" r="4" fill="rgba(255,215,235,0.8)"/>
+      </svg>
+    </div>
 
-  <!-- Tulipán SVG central -->
-  <div class="tulip-wrap">
-    <svg class="pastel-palette" width="180" height="220" viewBox="0 0 180 220" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <!-- Tallo -->
-      <path d="M90 210 C90 170 90 155 90 130" stroke="#7aab6a" stroke-width="5" stroke-linecap="round"/>
-      <!-- Hoja izquierda -->
-      <path d="M90 165 C72 155 58 140 62 125 C70 138 82 148 90 150" fill="#8fba7e" opacity="0.9"/>
-      <!-- Hoja derecha -->
-      <path d="M90 155 C108 145 122 130 118 115 C110 128 98 138 90 140" fill="#7aab6a" opacity="0.9"/>
-      <!-- Pétalo trasero izquierdo oscuro -->
-      <ellipse cx="72" cy="88" rx="22" ry="38" fill="#e8a8c8" transform="rotate(-18 72 88)" opacity="0.85"/>
-      <!-- Pétalo trasero derecho oscuro -->
-      <ellipse cx="108" cy="88" rx="22" ry="38" fill="#e8a8c8" transform="rotate(18 108 88)" opacity="0.85"/>
-      <!-- Pétalo central trasero -->
-      <ellipse cx="90" cy="72" rx="20" ry="40" fill="#dfa0c0" opacity="0.7"/>
-      <!-- Pétalo izquierdo principal -->
-      <ellipse cx="68" cy="90" rx="24" ry="42" fill="#f0b8d0" transform="rotate(-12 68 90)"/>
-      <!-- Pétalo derecho principal -->
-      <ellipse cx="112" cy="90" rx="24" ry="42" fill="#f0b8d0" transform="rotate(12 112 90)"/>
-      <!-- Pétalo central principal -->
-      <ellipse cx="90" cy="78" rx="22" ry="44" fill="#f5c8dc"/>
-      <!-- Interior del tulipán (sombra) -->
-      <ellipse cx="90" cy="68" rx="14" ry="20" fill="#d890b8" opacity="0.4"/>
-      <!-- Estambre -->
-      <circle cx="90" cy="58" r="5" fill="#c878a8" opacity="0.7"/>
-      <line x1="90" y1="48" x2="90" y2="63" stroke="#b86898" stroke-width="2" stroke-linecap="round"/>
-      <circle cx="90" cy="47" r="3.5" fill="#d890b8"/>
-    </svg>
-  </div>
+    <p class="hero-tag">Te invitamos con amor</p>
 
-  <!-- Iconitos decorativos -->
-  <div class="deco-row">
-    <span>🌸</span>
-    <span>🌷</span>
-    <span>🌸</span>
-  </div>
+    <h1 class="hero-title">
+      Taller de<br>
+      <em>Sanidad</em><br>
+      para Chicas
+    </h1>
 
-  <!-- Versículo -->
-  <div class="verse-section">
-    <p class="verse-text">
-      "Él sana a los quebrantados de corazón,<br>
-      y venda sus heridas."
-    </p>
-    <span class="verse-ref">Salmos 147:3</span>
+    <p class="hero-sub">Un espacio para florecer y sanar</p>
+    <div class="hero-heart">💗</div>
   </div>
 
   <!-- Contenido desplazable -->
   <div class="invite-body">
+
+    <!-- Versículo -->
+    <div class="verse-card">
+      <p class="verse-text">
+        "Él sana a los quebrantados<br>de corazón y venda sus heridas."
+      </p>
+      <span class="verse-ref">Salmos 147:3</span>
+    </div>
 
     <!-- Info -->
     <div class="info-card">
@@ -562,7 +531,7 @@
       </p>
     </div>
 
-    <!-- Llevar + Colores pasteles -->
+    <!-- Llevar + Vestido -->
     <div class="bring-card">
       <p class="bring-heading">¿Qué llevar?</p>
       <div class="bring-list">
@@ -576,36 +545,18 @@
         </div>
         <div class="bring-item">
           <span class="bring-dot"></span>
-          <span>Fe para creer que eres valiosa y amada 🌷</span>
+          <span>Fe para creer que eres valiosa y amada🌷</span>
         </div>
       </div>
 
       <div class="divider-soft"></div>
 
-      <!-- Paleta de colores pasteles -->
-      <div class="pastel-row">
-        <!-- Paleta SVG con manchas de colores pasteles -->
-        <svg width="100" height="88" viewBox="0 0 100 88" fill="none" xmlns="http://www.w3.org/2000/svg" style="filter:drop-shadow(0 3px 10px rgba(180,100,140,0.2)); animation: floatY 4s ease-in-out infinite;">
-          <!-- Forma de paleta -->
-          <path d="M85 44 C85 64 70 80 50 80 C30 80 15 64 15 44 C15 24 30 8 50 8 C70 8 85 24 85 44Z" fill="rgba(255,255,255,0.82)" stroke="rgba(210,150,180,0.35)" stroke-width="1.5"/>
-          <!-- Manchas de color -->
-          <circle cx="36" cy="36" r="10" fill="#f9c0d8" opacity="0.9"/>
-          <circle cx="57" cy="30" r="10" fill="#fde8a8" opacity="0.9"/>
-          <circle cx="70" cy="48" r="10" fill="#b8e0f8" opacity="0.9"/>
-          <circle cx="60" cy="63" r="10" fill="#c8f0d0" opacity="0.9"/>
-          <circle cx="36" cy="62" r="10" fill="#e4c8f8" opacity="0.9"/>
-          <!-- Agujero del pulgar -->
-          <circle cx="34" cy="76" r="7" fill="rgba(240,180,215,0.5)" stroke="rgba(210,155,185,0.4)" stroke-width="1.2"/>
-          <!-- Pincel -->
-          <rect x="76" y="10" width="6" height="28" rx="3" fill="rgba(255,255,255,0.95)" stroke="rgba(200,150,175,0.4)" stroke-width="1"/>
-          <ellipse cx="79" cy="39" rx="3.5" ry="5.5" fill="#f0a8c8"/>
-          <rect x="77.5" y="8" width="3" height="5" rx="1.5" fill="rgba(160,120,90,0.55)"/>
-        </svg>
-
-        <p class="pastel-text">
-          <span class="highlight">🌸 ¡Ven bonita y radiante!</span>
-          Anímate a venir con <strong>colores pasteles</strong><br>
-          ¡Queremos verte hermosa ese día!
+      <div class="dress-row">
+        <span class="dress-icon-big">👗</span>
+        <p class="dress-text">
+          ¿Tienes un vestido pastel?
+          <strong>¡Úsalo! (es opcional)</strong>
+          Ven con colores suaves —<br>¡Ven a ser parte de algo hermoso!
         </p>
       </div>
     </div>
@@ -614,8 +565,6 @@
     <button class="btn-register" onclick="mostrarFormulario()">
       🌸 &nbsp; ¡Me anoto!
     </button>
-
-    <p class="invite-footer">con mucho amor 💗</p>
 
   </div>
 </div>
@@ -747,6 +696,7 @@
     const nombreCompleto = nombre.value.trim() + ' ' + apellido.value.trim();
     setLoading(true);
 
+    // Enviar a Google Sheets
     fetch(SHEET_URL, {
       method: 'POST',
       mode: 'no-cors',
@@ -757,6 +707,7 @@
       })
     })
     .then(() => {
+      // no-cors no devuelve respuesta legible, pero si llegó aquí es éxito
       document.getElementById('confirm-name-display').textContent = nombreCompleto;
       setLoading(false);
       cambiarVista('view-confirm');
@@ -767,6 +718,7 @@
     });
   }
 
+  // Validación en tiempo real
   ['inp-nombre', 'inp-apellido'].forEach(id => {
     const el  = document.getElementById(id);
     const key = id.replace('inp-', '');
@@ -783,22 +735,6 @@
       }
     });
   });
-
-  // ══ Generar pétalos cayendo ══
-  (function() {
-    const emojis = ['🌸','🌷','🌸','🌸','🌷'];
-    const count = 18;
-    for (let i = 0; i < count; i++) {
-      const el = document.createElement('div');
-      el.className = 'petal';
-      el.textContent = emojis[i % emojis.length];
-      const left = Math.random() * 96 + 2;
-      const dur  = 8 + Math.random() * 8;
-      const delay = -(Math.random() * dur); // delay negativo = ya en progreso
-      el.style.cssText = `left:${left}%; animation-duration:${dur.toFixed(1)}s; animation-delay:${delay.toFixed(1)}s;`;
-      document.body.appendChild(el);
-    }
-  })();
 </script>
 </body>
 </html>
